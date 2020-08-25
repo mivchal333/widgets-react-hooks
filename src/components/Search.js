@@ -3,7 +3,18 @@ import axios from 'axios';
 
 const Search = props => {
     const [term, setTerm] = useState('');
+    const [debouncedTerm, setDebouncedTerm] = useState(term);
     const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        const timerId = setTimeout(() => {
+            setDebouncedTerm(term)
+        }, 1000)
+        return () => {
+            clearTimeout(timerId)
+        }
+    }, [term])
+
     useEffect(() => {
         const search = async () => {
             const {data} = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -17,20 +28,10 @@ const Search = props => {
             })
             setResults(data.query.search)
         }
-
-        if (term && !results.length) {
-            search()
-        } else {
-            const timeoutId = setTimeout(() => {
-                if (term) {
-                    search();
-                }
-            }, 500);
-            return () => {
-                clearTimeout(timeoutId)
-            }
+        if (debouncedTerm) {
+            search();
         }
-    }, [results.length, term])
+    }, [debouncedTerm, term])
 
     const renderedResults = results.map(result => {
         return <div className="item" key={result.pageid}>
