@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import Dropdown from "./components/Dropdown";
+import React from 'react'
+import Translate from "./components/Translate";
 
 const options = [
     {
@@ -12,12 +12,7 @@ const options = [
     }
 ]
 export default () => {
-    const [selected, setSelected] = useState(options[0])
     return <div>
-        <Dropdown
-            options={options}
-            selected={selected}
-            onSelectedChange={setSelected}
-        />
+        <Translate/>
     </div>
 }
