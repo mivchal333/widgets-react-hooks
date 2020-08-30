@@ -1,5 +1,6 @@
 import React from 'react'
-import Translate from "./components/Translate";
+import Route from "./components/Route";
+import Accordion from "./components/Accordion";
 
 const options = [
     {
@@ -13,6 +14,10 @@ const options = [
 ]
 export default () => {
     return <div>
-        <Translate/>
+        <Route
+            path="/"
+        >
+            <Accordion items={options}/>
+        </Route>
     </div>
 }
