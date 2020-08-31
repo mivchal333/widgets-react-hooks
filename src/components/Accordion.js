@@ -21,7 +21,7 @@ const Accordion = ({items}) => {
             </React.Fragment>
         );
     });
-
+    ę
     return <div className="ui styled accordion">
         {renderedItems}
     </div>;
