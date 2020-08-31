@@ -15,7 +15,6 @@ const Header = () => {
             <a href="/translate" className="item">
                 Translate
             </a>
-
         </div>
     )
 }
