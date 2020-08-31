@@ -19,5 +19,4 @@ const Link = ({className, href, children}) => {
       </a>
   );
 };
-
 export default Link;
